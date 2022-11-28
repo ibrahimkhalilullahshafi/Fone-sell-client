@@ -5,6 +5,7 @@ import Blog from "../components/pages/blog/Blog";
 import Home from "../components/pages/home/Home";
 import Products from "../components/pages/products/Products";
 import Main from "../layout/Main";
+import NotFound from "./404route/NotFound";
 
 export const routes = createBrowserRouter([
     {
@@ -35,5 +36,9 @@ export const routes = createBrowserRouter([
             }
         ]
 
+    },
+    {
+        path: "/*",
+        element: <NotFound></NotFound>,
     }
 ])
