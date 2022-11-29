@@ -13,8 +13,9 @@ const Header = () => {
     const menuItem = <React.Fragment>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/blog">Blog</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
         {user?.uid ?
-            <li><button onClick={handleLogOut}>Sign out</button></li> :
+            <li><button onClick={handleLogOut}>Log out</button></li> :
             <li><Link to="/login">Login</Link></li>
         }
     </React.Fragment >

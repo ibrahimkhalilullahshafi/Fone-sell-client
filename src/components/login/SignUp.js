@@ -1,12 +1,22 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authprovider/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, providerLogin, updateUserProfile } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const googleProvider = new GoogleAuthProvider();
+
 
     const handleSignUp = (data) => {
         // console.log(data);
@@ -14,10 +24,28 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const profile = {
+                    displayName: data.name
+                }
+                updateUserProfile(profile)
+                    .then(() => { })
+                    .catch(error => console.log(error));
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);
             })
+    }
+
+
+    const googleSignInHandler = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -41,7 +69,7 @@ const SignUp = () => {
 
                 <div className="divider">or</div>
 
-                <button className="btn rounded-lg w-full">GOOGLE</button>
+                <button onClick={googleSignInHandler} className="btn rounded-lg w-full">GOOGLE</button>
 
             </form>
 

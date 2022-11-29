@@ -20,7 +20,7 @@ const Home = () => {
             </div>
             <h1 className='text-center text-5xl font-bold my-8'>Browse item by brand category</h1>
 
-            <div className='justify-center flex'>
+            <div className='justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
                 {categories.map(category => <Categories
                     key={category._id}
                     category={category}
