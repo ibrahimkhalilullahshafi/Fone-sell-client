@@ -5,7 +5,7 @@ const Products = () => {
     const productCollection = useLoaderData();
     console.log(productCollection);
     return (
-        <div>
+        <div className='justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
             {productCollection.map(product =>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <figure><img src={product.imageURL} alt="Shoes" /></figure>

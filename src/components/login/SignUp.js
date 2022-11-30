@@ -19,7 +19,7 @@ const SignUp = () => {
 
 
     const handleSignUp = (data) => {
-        // console.log(data);
+        console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -52,6 +52,10 @@ const SignUp = () => {
         <div className='h-[800px] flex flex-col justify-center items-center'>
             <h1 className='text-center text-5xl font-bold my-8 text-[#ff6507]'>SignUp</h1>
             <form onSubmit={handleSubmit(handleSignUp)} className="form-control w-full max-w-xs  border-double border border-slate-100 shadow-2xl p-10 rounded-lg">
+                <select className="select select-bordered w-full max-w-xs rounded-lg mt-1 mb-6" defaultValue="Buyer" {...register("role")}>
+                    <option>Buyer</option>
+                    <option>Seller</option>
+                </select>
                 <span className="label-text font-bold">Name</span>
                 <input className="input input-bordered w-full max-w-xs rounded-lg mt-3 mb-1" type="text" placeholder="Name" {...register("name", { required: "Name is required" })} />
                 {errors.Name && <span role="alert" className='text-red-500'>{errors.Name?.message}</span>}
