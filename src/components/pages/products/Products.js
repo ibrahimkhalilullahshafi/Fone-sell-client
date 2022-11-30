@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BuyingModal from '../buyingModal/BuyingModal';
+import Product from './product/Product';
 
 const Products = () => {
     const productCollection = useLoaderData();
-    console.log(productCollection);
+    const [buy, setBuy] = useState({});
+
+
+
     return (
-        <div className='justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
-            {productCollection.map(product =>
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <figure><img src={product.imageURL} alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">{product.name}</h2>
-                        <p>{product.description}</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+        <div>
+            <div className='justify-center grid gap-4 md:grid-cols-2 sm:grid-cols-1'>
+                {
+                    productCollection.map(product =>
+                        <Product
+                            key={product._id}
+                            product={product}
+                            setBuy={setBuy}
+                        ></Product>)
+                }
+            </div>
+            <BuyingModal
+                key={buy._id}
+                buy={buy}
+            ></BuyingModal>
+
         </div>
     );
 };

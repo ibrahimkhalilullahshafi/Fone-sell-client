@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authprovider/AuthProvider';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const { signIn, providerLogin } = useContext(AuthContext);
 
@@ -30,7 +30,8 @@ const Login = () => {
             .catch(error => {
                 console.log(error);
                 setError(error.message);
-            });
+            })
+        reset();
     }
 
     const googleSignInHandler = () => {
@@ -52,14 +53,20 @@ const Login = () => {
                 <span className="label-text font-bold">Email</span>
                 <input className="input input-bordered w-full max-w-xs rounded-lg mt-3 mb-1" type="email" placeholder="Email" {...register("email", { required: "Email Address is required", pattern: /^\S+@\S+$/i })} />
                 {errors.Email && <span role="alert" className='text-red-500'>{errors.Email?.message}</span>}
+
                 <span className="label-text font-bold mt-6">Password</span>
                 <input className="input input-bordered w-full max-w-xs rounded-lg mt-3 mb-1" type="password" placeholder="Password" {...register("password", { required: "Password is required" })} />
                 {errors.Password && <span role="alert" className='text-red-500'>{errors.Password?.message}</span>}
+
                 <span role="alert" className='text-red-500'>{error}</span>
+
                 <span className="label-text mb-2 ">Forget password?</span>
+
                 <input type="submit" value="Login" className="btn rounded-lg w-full" />
                 <span className="label-text mt-2">Don't have an account? <Link className='text-[#ff6507]' to={'/signup'}>Sign up</Link></span>
+
                 <div className="divider">or</div>
+
                 <button onClick={googleSignInHandler} className="btn rounded-lg w-full">GOOGLE</button>
 
             </form>

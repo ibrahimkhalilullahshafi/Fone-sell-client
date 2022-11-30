@@ -1,13 +1,15 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authprovider/AuthProvider';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const { createUser, providerLogin, updateUserProfile } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
                 const profile = {
                     displayName: data.name
                 }
@@ -33,8 +36,9 @@ const SignUp = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error(error);
+                setError(error.message);
             })
+        reset();
     }
 
 
@@ -66,6 +70,8 @@ const SignUp = () => {
                 <span className="label-text font-bold mt-6">Password</span>
                 <input className="input input-bordered w-full max-w-xs rounded-lg mt-3 mb-1" type="password" placeholder="Password" {...register("password", { required: "Password is required" })} />
                 {errors.Password && <span role="alert" className='text-red-500'>{errors.Password?.message}</span>}
+
+                <span role="alert" className='text-red-500'>{error}</span>
 
                 <input type="submit" value="SignUp" className="btn rounded-lg w-full mt-6" />
 

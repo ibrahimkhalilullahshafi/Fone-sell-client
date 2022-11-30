@@ -1,10 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData } from 'react-router-dom';
 import Categories from '../categories/Categories';
 import banner from './banner.jpg'
 
 const Home = () => {
-    const categories = useLoaderData();
+    const { data: categories = [] } = useQuery({
+        queryKey: ['categories'],
+        queryFn: () => fetch('http://localhost:5000/category')
+            .then(res => res.json())
+    })
     return (
 
         <div>
@@ -20,7 +25,7 @@ const Home = () => {
             </div>
             <h1 className='text-center text-5xl font-bold my-8'>Browse item by brand category</h1>
 
-            <div className='justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
+            <div className='justify-center items-center justify-items-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 px-0'>
                 {categories.map(category => <Categories
                     key={category._id}
                     category={category}
