@@ -25,8 +25,8 @@ const SignUp = () => {
         console.log(data);
         createUser(data.email, data.password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                // const user = result.user;
+                // console.log(user);
                 toast.success('user created successfully')
                 setError('');
                 const profile = {
@@ -66,6 +66,10 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const profile = {
+                    role: 'Buyer'
+                }
+                saveUser(user.displayName, user.email, profile.role);
                 navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
