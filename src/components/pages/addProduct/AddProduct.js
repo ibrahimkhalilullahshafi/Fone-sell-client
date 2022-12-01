@@ -32,9 +32,9 @@ const AddProduct = () => {
                 if (imgData.success) {
                     // console.log(imgData.data.url)
                     const addProductInfo = {
-                        categoryId: categoryss,
+                        categoryId: data.category,
                         name: data.name,
-                        category: data.category,
+                        category: data.categorycategoryss,
                         sellerName: data.sellerName,
                         postedTime: formattedDate,
                         usedTime: data.usedTime,
@@ -45,21 +45,19 @@ const AddProduct = () => {
                         location: data.location
                     }
                     console.log(addProductInfo);
-                    // fetch('/', {
-                    //     method: 'POST',
-                    //     headers: {
-                    //         Authorization: 'Bearer admin',
-                    //         'Content-Type': 'application/json',
-                    //     },
-                    //     body: JSON.stringify({
-                    //         username,
-                    //         password,
-                    //     }),
-                    // })
-                    //     .then((res) => {
-                    //         return res.json();
-                    //     })
-                    //     .then((data) => console.log(data));
+                    fetch('http://localhost:5000/products', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            addProductInfo
+                        }),
+                    })
+                        .then((res) => {
+                            return res.json();
+                        })
+                        .then((data) => console.log(data));
                 }
             })
         reset();
