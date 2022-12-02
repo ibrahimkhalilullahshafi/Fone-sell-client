@@ -33,7 +33,7 @@ const BuyingModal = ({ buy }) => {
             buyersLocation: location,
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://a-12-server-five.vercel.app/orders', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

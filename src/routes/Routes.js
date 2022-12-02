@@ -27,7 +27,7 @@ export const routes = createBrowserRouter([
             {
                 path: "/category/:id",
                 element: <Products></Products>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://a-12-server-five.vercel.app/category/${params.id}`)
             },
             {
                 path: "/signup",
@@ -64,12 +64,12 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/allseller",
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
-                loader: () => fetch('http://localhost:5000/allseller')
+                loader: () => fetch('https://a-12-server-five.vercel.app/allseller')
             },
             {
                 path: "/dashboard/allbuyer",
                 element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
-                loader: () => fetch('http://localhost:5000/allbuyer')
+                loader: () => fetch('https://a-12-server-five.vercel.app/allbuyer')
             }
         ]
     },

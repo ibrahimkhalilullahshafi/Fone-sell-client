@@ -4,7 +4,7 @@
 
 ❄️ Live-site link: 
 
-    (https://breaking-code-6997b.web.app)
+    (https://fone-sell.web.app)
 
 ❄️ Technologies: A list of technologies used within the project :
     

@@ -8,7 +8,7 @@ import banner from './banner.jpg'
 const Home = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/category')
+        queryFn: () => fetch('https://a-12-server-five.vercel.app/category')
             .then(res => res.json())
     })
     return (
