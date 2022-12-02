@@ -14,12 +14,12 @@ const MyProduct = () => {
         }
     })
     return (
-        <div>
+        <div className='flex flex-col items-center'>
             <h1 className='text-center text-5xl font-bold my-8 text-[#ff6507]'>My Products</h1>
-            <div>
+            <div className='my-4 w-3/4'>
                 {
                     myProducts?.map(myProduct =>
-                        <div key={myProduct._id} className="card card-side bg-base-100 shadow-xl">
+                        <div key={myProduct._id} className="card card-side bg-base-100 border shadow-xl my-4">
                             <figure><img className='h-[200px] w-[200px]' src={myProduct.imageURL} alt="Movie" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{myProduct.name}</h2>

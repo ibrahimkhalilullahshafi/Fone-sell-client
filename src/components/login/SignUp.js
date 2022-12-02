@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 import { AuthContext } from '../context/authprovider/AuthProvider';
 
 const SignUp = () => {
@@ -12,6 +13,10 @@ const SignUp = () => {
 
     const [error, setError] = useState('');
 
+    // const [createdUserEmail, setCreatedUserEmail] = useState('');
+
+    // const [token] = useToken(createdUserEmail);
+
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -20,13 +25,15 @@ const SignUp = () => {
 
     const googleProvider = new GoogleAuthProvider();
 
+    // if (token) {
+
+    // }
+
 
     const handleSignUp = (data) => {
         console.log(data);
         createUser(data.email, data.password)
             .then(result => {
-                // const user = result.user;
-                // console.log(user);
                 toast.success('user created successfully')
                 setError('');
                 const profile = {
@@ -45,6 +52,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
+        console.log(user);
         fetch('http://localhost:5000/users', {
             method: 'post',
             headers: {
@@ -54,18 +62,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('saveuser data', data);
-                getUserToken(email);
-            })
-    }
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken);
-                    navigate(from, { replace: true });
-                }
+                navigate(from, { replace: true });
             })
     }
 

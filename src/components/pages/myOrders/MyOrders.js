@@ -4,22 +4,30 @@ import { AuthContext } from '../../context/authprovider/AuthProvider';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
+
     const url = `http://localhost:5000/orders?email=${user?.email}`;
+
     const { data: orders = [] } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url
+                //     , {
+                //     headers: {
+                //         authorization: `bearer ${localStorage.getItem('accessToken')}`
+                //     }
+                // }
+            );
             const data = await res.json();
             return data;
         }
     })
     return (
-        <div>
+        <div className='flex flex-col items-center'>
             <h1 className='text-center text-5xl font-bold my-8 text-[#ff6507]'>My Orders</h1>
-            <div>
+            <div className='my-4 w-3/4'>
                 {
-                    orders?.map(order =>
-                        <div key={order._id} className="card card-side bg-base-100 shadow-xl">
+                    orders?.length && orders?.map(order =>
+                        <div key={order._id} className="card card-side bg-base-100 border shadow-xl my-4">
                             <figure><img className='h-[200px] w-[200px]' src={order.image} alt="Movie" /></figure>
                             <div className="card-body">
                                 <span className="label-text font-bold">Product Name:</span>

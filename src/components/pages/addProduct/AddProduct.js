@@ -2,17 +2,28 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authprovider/AuthProvider';
 import Loading from '../loading/loading';
 
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
+
     const { user } = useContext(AuthContext);
 
     const imageHostKey = process.env.REACT_APP_imgbb_api;
 
     const today = new Date();
+
     const formattedDate = format(today, 'PPPP');
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/myproducts';
+
 
 
 
@@ -60,7 +71,13 @@ const AddProduct = () => {
                         .then((res) => {
                             return res.json();
                         })
-                        .then((data) => console.log(data));
+                        .then((data) => {
+                            console.log(data);
+                            if (data.acknowledged) {
+                                toast.success('order confirmed')
+                                navigate(from, { replace: true });
+                            }
+                        });
                 }
             })
         reset();
@@ -119,7 +136,7 @@ const AddProduct = () => {
                 <span className="label-text font-bold">Upload Image</span>
                 <input type="file" {...register("imageURL", { required: true })} />
 
-                <input type="submit" value="Submit" className="btn btn-primary rounded-lg w-full mt-3" />
+                <input type="submit" value="Submit" className="btn btn-primary bg-[#323232] text-[#ff6507] rounded-lg w-full mt-3" />
             </form >
 
         </div >

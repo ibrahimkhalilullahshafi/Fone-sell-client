@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import { useLoaderData } from 'react-router-dom';
 import Categories from '../categories/Categories';
 import banner from './banner.jpg'
@@ -14,12 +15,12 @@ const Home = () => {
 
         <div>
             <div className="hero min-h-[600px]" style={{ backgroundImage: `url(${banner})` }}>
-                <div className="hero-overlay bg-opacity-40"></div>
+                <div className="hero-overlay bg-opacity-50"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">Fone-Sell</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <h1 className="mb-5 text-6xl font-bold text-[#323232}">Fone-Sell</h1>
+                        <p className="mb-5 text-2xl font-bold">Swap your smartphone easily with us</p>
+                        <Link to='/login'><button className="btn btn-primary bg-[#323232] text-[#ff6507] rounded-lg">Get Started</button></Link>
                     </div>
                 </div>
             </div>

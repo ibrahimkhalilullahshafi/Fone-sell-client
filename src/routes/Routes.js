@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../components/login/Login";
 import SignUp from "../components/login/SignUp";
 import AddProduct from "../components/pages/addProduct/AddProduct";
+import AllBuyer from "../components/pages/allBuyer/AllBuyer";
+import AllSeller from "../components/pages/allSeller/AllSeller";
 import Blog from "../components/pages/blog/Blog";
 import Home from "../components/pages/home/Home";
 import MyOrders from "../components/pages/myOrders/MyOrders";
@@ -10,6 +12,7 @@ import Products from "../components/pages/products/Products";
 import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import NotFound from "./404route/NotFound";
+import AdminRoute from "./adminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -39,14 +42,6 @@ export const routes = createBrowserRouter([
                 element: <AddProduct></AddProduct>
             },
             {
-                path: "/myorders",
-                element: <MyOrders></MyOrders>
-            },
-            {
-                path: "/myproducts",
-                element: <MyProduct></MyProduct>
-            },
-            {
                 path: "/blog",
                 element: <PrivateRoute><Blog></Blog></PrivateRoute>
             }
@@ -56,25 +51,26 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
-
-            // {
-            //     path: "/myproduct",
-            //     element: <MyProduct></MyProduct>
-            // },
-            // {
-            //     path: "/myorders",
-            //     element: <MyOrders></MyOrders>
-            // },
-            // {
-            //     path: "/allsellers",
-            //     element: <MyOrders></MyOrders>
-            // },
-            // {
-            //     path: "/allbuyers",
-            //     element: <MyOrders></MyOrders>
-            // }
+            {
+                path: "/dashboard",
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: "/dashboard/myproducts",
+                element: <MyProduct></MyProduct>
+            },
+            {
+                path: "/dashboard/allseller",
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
+                loader: () => fetch('http://localhost:5000/allseller')
+            },
+            {
+                path: "/dashboard/allbuyer",
+                element: <AllBuyer></AllBuyer>,
+                loader: () => fetch('http://localhost:5000/allbuyer')
+            }
         ]
     },
     {
