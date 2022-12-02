@@ -11,6 +11,7 @@ const Products = () => {
 
     return (
         <div>
+            <h1 className='text-center text-5xl font-bold my-8 text-[#ff6507]'>Products</h1>
             <div className='justify-center grid gap-4 md:grid-cols-2 sm:grid-cols-1'>
                 {
                     productCollection.map(product =>

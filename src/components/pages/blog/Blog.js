@@ -3,7 +3,8 @@ import React from 'react';
 const Blog = () => {
     return (
         <div>
-            <div className="card w-full bg-base-100 shadow-xl">
+            <h1 className='text-center text-5xl font-bold my-8 text-[#ff6507]'>Blog</h1>
+            <div className="card w-full bg-base-100 mb-4 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Ques:1: What are the different ways to manage a state in a React application?</h2>
                     <p>When we talk about state in our applications, it’s important to be clear about what types of state actually matter.<br />
@@ -30,7 +31,7 @@ const Blog = () => {
                         There are undoubtedly more pieces of state that we could identify, but these are the major categories worth focusing on for most applications you build.</p>
                 </div>
             </div>
-            <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card w-full bg-base-100 mb-4 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Ques:2: How does prototypical inheritance work?</h2>
                     <p> prototypical inheritance refers to the ability to access object properties from another object. We use a JavaScript prototype to add new properties and methods to an existing object constructor. We can then essentially tell our JS code to inherit properties from a prototype. Prototypical inheritance allows us to reuse the properties or methods from one JavaScript object to another through a reference pointer function.
@@ -47,7 +48,7 @@ const Blog = () => {
                         We can see how prototypal inheritance works on the basis of specifying categories within a group from least specific to most – from rectangle to square. In code, this concept can sometimes be lost in the syntax. If you find this happens, speak the relations between objects and listen to where you draw distinctions. If you hear, “all ___ are , but…not all ___ are”, that is where a new prototypical relationship should be added.</p>
                 </div>
             </div>
-            <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card w-full bg-base-100 mb-4 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Ques:3: What is a unit test? Why should we write unit tests?</h2>
                     <p>Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually and independently scrutinized for proper operation. This testing methodology is done during the development process by the software developers and sometimes QA staff.  The main objective of unit testing is to isolate written code to test and determine if it works as intended.<br />
@@ -56,10 +57,12 @@ const Blog = () => {
                     </p>
                 </div>
             </div>
-            <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card w-full bg-base-100 mb-4 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Ques:4: What are the difference between angular vs react vs vue?</h2>
-                    <img src="https://i.ibb.co/bbDXxbC/Comparative-Analysis-of-Angularjs-vs-React-Js-vs-Vue-Js.jpg" alt="" />
+                    <div className='flex items-center'>
+                        <img className='w-fit' src="https://i.ibb.co/7JGcr9j/Comparative-Analysis-of-Angularjs-vs-React-Js-vs-Vue-Js.jpg" alt="" />
+                    </div>
                 </div>
             </div>
 

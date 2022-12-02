@@ -2,6 +2,7 @@ import React from 'react';
 
 const Product = ({ product, setBuy }) => {
     return (
+
         <div className="card w-full bg-base-100 shadow-xl">
             <figure><img src={product.imageURL} alt="Shoes" /></figure>
             <div className="card-body">
@@ -14,7 +15,7 @@ const Product = ({ product, setBuy }) => {
                 <p><span className='font-bold'>Original Price:</span> {product.originalPrice}</p>
                 <p><span className='font-bold'>Resale Price:</span> {product.resalePrice}</p>
                 <div className="card-actions justify-center">
-                    <label htmlFor="buying-modal" className="btn btn-primary w-full" onClick={() => setBuy(product)}>Buy Now</label>
+                    <label htmlFor="buying-modal" className="btn btn-primary bg-[#323232] text-[#ff6507] w-full" onClick={() => setBuy(product)}>Buy Now</label>
                 </div>
             </div>
         </div>

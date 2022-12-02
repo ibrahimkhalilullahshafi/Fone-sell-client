@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../context/authprovider/AuthProvider';
 import Loading from '../loading/loading';
 
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
+    const { user } = useContext(AuthContext);
 
     const imageHostKey = process.env.REACT_APP_imgbb_api;
 
@@ -42,7 +44,8 @@ const AddProduct = () => {
                         originalPrice: data.originalPrice,
                         resalePrice: data.resalePrice,
                         imageURL: imgData.data.url,
-                        location: data.location
+                        location: data.location,
+                        email: user.email
                     }
                     console.log(addProductInfo);
                     fetch('http://localhost:5000/products', {
