@@ -39,7 +39,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/addproduct",
-                element: <AddProduct></AddProduct>
+                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
             },
             {
                 path: "/blog",
@@ -68,7 +68,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/dashboard/allbuyer",
-                element: <AllBuyer></AllBuyer>,
+                element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
                 loader: () => fetch('http://localhost:5000/allbuyer')
             }
         ]

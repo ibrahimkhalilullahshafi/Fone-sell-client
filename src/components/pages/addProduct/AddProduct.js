@@ -114,6 +114,14 @@ const AddProduct = () => {
                         >{brand.category}</option>)
                     }
                 </select>
+                <span className="label-text font-bold">Condition</span>
+                <select className="select select-bordered w-full max-w-xs rounded-lg mb-4" {...register("condition")}>
+                    <option>Excellent</option>
+                    <option>Good</option>
+                    <option>Fair</option>
+                    }
+                </select>
+
 
                 <span className="label-text font-bold">Your Name</span>
                 <input className="input input-bordered w-full max-w-xs rounded-lg mt-3 mb-1" placeholder="Your Name" type="text" {...register("sellerName", { required: true })} />
