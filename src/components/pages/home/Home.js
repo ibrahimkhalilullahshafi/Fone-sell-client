@@ -18,7 +18,7 @@ const Home = () => {
                 <div className="hero-overlay bg-opacity-50"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-6xl font-bold text-[#323232}">Fone-Sell</h1>
+                        <h1 className="mb-5 text-5xl font-bold text-[#323232}">Fone-Sell</h1>
                         <p className="mb-5 text-2xl font-bold">Swap your smartphone easily with us</p>
                         <Link to='/login'><button className="btn btn-primary bg-[#323232] text-[#ff6507] rounded-lg">Get Started</button></Link>
                     </div>
